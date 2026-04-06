@@ -757,11 +757,22 @@ function App() {
                       qualidade de vida e equilíbrio mental.
                     </p>
 
-                    <div className="flex flex-wrap gap-2">
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">Saúde da Família</span>
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">TCC</span>
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">Crianças & Adolescentes</span>
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">Online & Presencial</span>
+                    {/* Preço + botão */}
+                    <div className="flex items-center gap-5">
+                      <div className="flex flex-col">
+                        <span className="text-xs text-gray-400 line-through">De: R$ 250</span>
+                        <span className="text-xl font-bold text-red-600">R$ 180</span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          const message = `Olá! Gostaria de agendar uma consulta de Psicologia com a Gisliane Silva (Gih).\n\n*Serviço:* Terapia Psicológica – TCC\n*Valor:* R$ 180,00\n\nAguardo a confirmação, por favor.`;
+                          window.open(`https://wa.me/5569992839458?text=${encodeURIComponent(message)}`, '_blank');
+                        }}
+                        className="flex items-center gap-2 bg-gradient-to-r from-clinic-500 to-clinic-600 text-white px-5 py-3 rounded-xl font-semibold text-sm hover:from-clinic-600 hover:to-clinic-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                      >
+                        <Calendar className="w-4 h-4" />
+                        Agendar via WhatsApp
+                      </button>
                     </div>
                   </div>
                 </div>

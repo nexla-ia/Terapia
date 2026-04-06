@@ -643,10 +643,80 @@ function App() {
                       <p className="text-sm text-clinic-600 font-medium">Terapeuta Energética</p>
                     </div>
                     <p className="text-gray-600 text-sm md:text-base leading-relaxed text-center">
-                      Com energia leve e transformadora, conduz processos que despertam clareza e abrem novas 
-                      possibilidades. Seu toque sutil inspira confiança e ajuda cada pessoa a liberar bloqueios 
+                      Com energia leve e transformadora, conduz processos que despertam clareza e abrem novas
+                      possibilidades. Seu toque sutil inspira confiança e ajuda cada pessoa a liberar bloqueios
                       internos, permitindo que a vida flua de forma mais leve e consciente.
                     </p>
+                  </div>
+                </div>
+
+                {/* Gisliane Silva – Psicóloga */}
+                <div className="mt-6 md:mt-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border border-clinic-100 overflow-hidden">
+                  <div className="flex flex-col sm:flex-row">
+                    {/* Foto */}
+                    <div className="sm:w-48 md:w-56 flex-shrink-0">
+                      <img
+                        src={encodeURI('/GislianeSilva.png')}
+                        alt="Gisliane Silva - Psicóloga"
+                        className="w-full h-48 sm:h-full object-cover object-top"
+                        onError={(e) => {
+                          const t = e.currentTarget;
+                          t.style.display = 'none';
+                          const fallback = t.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                      <div
+                        className="w-full h-48 sm:h-full bg-gradient-to-br from-clinic-400 to-clinic-500 items-center justify-center hidden"
+                      >
+                        <span className="text-white text-4xl font-bold">GS</span>
+                      </div>
+                    </div>
+
+                    {/* Conteúdo */}
+                    <div className="flex-1 p-5 md:p-7">
+                      <p className="text-xs font-semibold text-clinic-500 uppercase tracking-widest mb-1">Psicóloga · CRP</p>
+                      <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-0.5">Gisliane Silva</h4>
+                      <p className="text-sm text-clinic-500 font-medium mb-3">Gih</p>
+
+                      <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-2">
+                        A Terapia Psicológica com Gisliane Silva é um espaço seguro e acolhedor para o cuidado com a saúde emocional.
+                        Com especialização em Saúde da Família e Comunidade, o atendimento é realizado de forma humanizada,
+                        utilizando a abordagem da Terapia Cognitivo-Comportamental (TCC), auxiliando no desenvolvimento do
+                        autoconhecimento, no manejo de emoções e na construção de pensamentos mais equilibrados.
+                      </p>
+                      <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
+                        Os atendimentos são voltados para crianças, adolescentes e adultos, podendo ser realizados de forma presencial
+                        ou online, conforme a sua necessidade.
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-5">
+                        {['Saúde da Família', 'TCC', 'Crianças & Adolescentes', 'Online & Presencial'].map(tag => (
+                          <span key={tag} className="px-3 py-1 bg-clinic-50 text-clinic-700 text-xs font-medium rounded-full border border-clinic-200">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Preço + botão */}
+                      <div className="flex items-center gap-4">
+                        <div className="flex flex-col">
+                          <span className="text-xs text-gray-400 line-through">De: R$ 250</span>
+                          <span className="text-lg font-bold text-red-600">R$ 180</span>
+                        </div>
+                        <button
+                          onClick={() => {
+                            const message = `Olá! Gostaria de agendar uma consulta de Psicologia com a Gisliane Silva (Gih).\n\n*Serviço:* Terapia Psicológica – TCC\n*Valor:* R$ 180,00\n\nAguardo a confirmação, por favor.`;
+                            window.open(`https://wa.me/5569992839458?text=${encodeURIComponent(message)}`, '_blank');
+                          }}
+                          className="flex items-center gap-2 bg-gradient-to-r from-clinic-500 to-clinic-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:from-clinic-600 hover:to-clinic-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                        >
+                          <Calendar className="w-4 h-4" />
+                          Agendar via WhatsApp
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

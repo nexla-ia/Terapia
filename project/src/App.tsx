@@ -102,48 +102,6 @@ function App() {
   const [services, setServices] = useState<Service[]>([]);
   const [salon, setSalon] = useState<Salon | null>(null);
   const [loading, setLoading] = useState(true);
-  const [ambienteIndex, setAmbienteIndex] = useState(0);
-  const [equipeIndex, setEquipeIndex] = useState(0);
-  const equipeMembers = [
-    {
-      src: '/AndreSilva.png',
-      name: 'André Silva',
-      role: 'Terapeuta Holístico',
-      initials: 'AS',
-      bio: 'Com um olhar atento e sensível, busca sempre compreender o que vai além das palavras. Sua presença transmite calma, acolhimento e confiança, conduzindo cada pessoa a se reconectar com sua própria essência e encontrar novos caminhos para o equilíbrio e bem-estar.',
-    },
-    {
-      src: '/RafaelFalco.png',
-      name: 'Rafael Falco',
-      role: 'Terapeuta Holístico',
-      initials: 'RF',
-      bio: 'De forma precisa e dedicada, combina firmeza e delicadeza para trazer alívio e leveza. Seu cuidado é pautado na atenção aos detalhes e na verdadeira escuta, criando um espaço onde corpo e mente encontram harmonia.',
-    },
-    {
-      src: '/LuGoncalves.png',
-      name: 'Luciana Gonçalves',
-      role: 'Terapeuta Energética',
-      initials: 'LG',
-      bio: 'Com energia leve e transformadora, conduz processos que despertam clareza e abrem novas possibilidades. Seu toque sutil inspira confiança e ajuda cada pessoa a liberar bloqueios internos, permitindo que a vida flua de forma mais leve e consciente.',
-    },
-  ];
-  const ambientePhotos = [
-    { src: '/AAbalcao.jpg', alt: 'Recepção' },
-    { src: '/AAchegada.jpg', alt: 'Sala de Espera' },
-    { src: '/AAmassagem.jpg', alt: 'Sala de Massagem' },
-    { src: '/AAsofa.jpg', alt: 'Área de Relaxamento' },
-  ];
-
-  // Auto-play carrosséis
-  useEffect(() => {
-    const t = setInterval(() => setAmbienteIndex(i => (i + 1) % ambientePhotos.length), 4000);
-    return () => clearInterval(t);
-  }, [ambientePhotos.length]);
-
-  useEffect(() => {
-    const t = setInterval(() => setEquipeIndex(i => (i + 1) % equipeMembers.length), 5000);
-    return () => clearInterval(t);
-  }, [equipeMembers.length]);
 
   // Dados da clínica (fallback quando não há dados do banco)
   const clinicData = {
@@ -533,119 +491,89 @@ function App() {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center mb-12 md:mb-20 relative z-10">
                 <div className="space-y-6 md:space-y-8">
-                  {/* Nossa História */}
-                  <div className="relative bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl border-l-4 border-clinic-500 hover:shadow-2xl transition-all duration-500">
-                    <div className="flex items-center mb-5">
-                      <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-clinic-400 to-clinic-600 rounded-xl md:rounded-2xl flex items-center justify-center mr-3 md:mr-4 shadow-md">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                    <div className="flex items-center mb-6">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-clinic-400 to-clinic-500 rounded-xl md:rounded-2xl flex items-center justify-center mr-3 md:mr-4">
                         <span className="text-white text-lg md:text-2xl">🏪</span>
                       </div>
-                      <div>
-                        <p className="text-xs font-semibold tracking-widest text-clinic-400 uppercase">Sobre nós</p>
-                        <h3 className="text-lg md:text-2xl font-bold text-gray-900 leading-tight">Nossa História</h3>
-                      </div>
+                      <h3 className="text-lg md:text-2xl font-bold text-gray-900">Nossa História</h3>
                     </div>
-                    <p className="text-gray-500 mb-3 leading-relaxed text-sm md:text-base">
-                      {salon?.name ? `O ${salon.name} nasceu` : 'Nossa clínica nasceu'} do sonho de criar um espaço
+                    <p className="text-gray-600 mb-3 md:mb-4 leading-relaxed text-sm md:text-base lg:text-lg">
+                      {salon?.name ? `O ${salon.name} nasceu` : 'Nossa clínica nasceu'} do sonho de criar um espaço 
                       onde cada pessoa se sinta acolhida e cuidada. Nos tornamos referência em terapias holísticas e bem-estar.
                     </p>
-                    <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-                      Com uma equipe de terapeutas altamente qualificados e apaixonados pelo que fazem,
+                    <p className="text-gray-600 leading-relaxed text-sm md:text-base lg:text-lg">
+                      Com uma equipe de terapeutas altamente qualificados e apaixonados pelo que fazem, 
                       oferecemos terapias personalizadas que promovem o equilíbrio e bem-estar integral.
                     </p>
-                    <div className="mt-5 flex gap-3">
-                      <span className="text-xs bg-clinic-50 text-clinic-600 font-semibold px-3 py-1 rounded-full border border-clinic-100">Holístico</span>
-                      <span className="text-xs bg-clinic-50 text-clinic-600 font-semibold px-3 py-1 rounded-full border border-clinic-100">Humanizado</span>
-                      <span className="text-xs bg-clinic-50 text-clinic-600 font-semibold px-3 py-1 rounded-full border border-clinic-100">Personalizado</span>
-                    </div>
                   </div>
-
-                  {/* Nossa Missão */}
-                  <div className="relative overflow-hidden bg-gradient-to-br from-clinic-600 via-clinic-500 to-clinic-400 rounded-2xl md:rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-500">
-                    {/* Círculo decorativo */}
-                    <div className="absolute -top-6 -right-6 w-32 h-32 bg-white/10 rounded-full" />
-                    <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-white/5 rounded-full" />
-                    <div className="relative">
-                      <div className="flex items-center mb-4">
-                        <div className="w-9 h-9 md:w-11 md:h-11 bg-white/20 rounded-xl flex items-center justify-center mr-3 shadow-inner">
-                          <span className="text-lg md:text-2xl">🎯</span>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold tracking-widest text-white/60 uppercase">Propósito</p>
-                          <h4 className="font-bold text-lg md:text-xl leading-tight">Nossa Missão</h4>
-                        </div>
+                  
+                  <div className="bg-gradient-to-br from-clinic-500 to-clinic-600 rounded-2xl md:rounded-3xl p-6 md:p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                    <div className="flex items-center mb-4">
+                      <div className="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-lg md:rounded-xl flex items-center justify-center mr-2 md:mr-3">
+                        <span className="text-lg md:text-2xl">🎯</span>
                       </div>
-                      <p className="text-white/85 text-sm md:text-base leading-relaxed">
-                        Proporcionar experiências únicas de cura e bem-estar, utilizando técnicas terapêuticas holísticas
-                        e abordagens integradas, sempre com atendimento humanizado e personalizado.
-                      </p>
-                      <div className="mt-5 h-px bg-white/20" />
-                      <p className="mt-4 text-white/70 text-xs font-medium tracking-wide">
-                        ✦ Corpo · Mente · Espírito
-                      </p>
+                      <h4 className="font-bold text-lg md:text-xl">Nossa Missão</h4>
                     </div>
+                    <p className="text-clinic-100 text-sm md:text-base lg:text-lg leading-relaxed">
+                      Proporcionar experiências únicas de cura e bem-estar, utilizando técnicas terapêuticas holísticas 
+                      e abordagens integradas, sempre com atendimento humanizado e personalizado.
+                    </p>
                   </div>
                 </div>
 
                 <div>
                   <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl border border-white/20">
-                    <div className="flex items-center mb-6">
+                    <div className="flex items-center mb-8">
                       <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-clinic-400 to-clinic-500 rounded-xl md:rounded-2xl flex items-center justify-center mr-3 md:mr-4">
                         <span className="text-white text-lg md:text-2xl">📸</span>
                       </div>
                       <h3 className="text-lg md:text-2xl font-bold text-gray-900">Nosso Ambiente</h3>
                     </div>
-
-                    {/* Carrossel com slide real */}
-                    <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-lg bg-black">
-                      {/* Strip deslizante */}
-                      <div
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${ambienteIndex * 100}%)` }}
-                      >
-                        {ambientePhotos.map((photo, i) => (
-                          <div key={i} className="w-full flex-shrink-0" style={{ height: '28rem' }}>
-                            <img
-                              src={encodeURI(photo.src)}
-                              alt={`Centro Terapêutico Bem-Estar - ${photo.alt}`}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        ))}
+                    
+                    <div className="grid grid-cols-2 gap-3 md:gap-4">
+                      <div className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                        <img
+                          src={encodeURI('/AAbalcao.jpg')}
+                          alt="Centro Terapêutico Bem-Estar - Recepção"
+                          className="w-full h-40 md:h-48 lg:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute bottom-2 left-2 md:bottom-3 md:left-3 text-white font-semibold text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                       </div>
 
-                      {/* Overlay escuro nas bordas */}
-                      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.15) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.15) 100%)' }} />
-
-                      {/* Label */}
-                      <div className="absolute bottom-10 left-0 right-0 text-center pointer-events-none">
-                        <span className="bg-black/60 text-white text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide">
-                          {ambientePhotos[ambienteIndex].alt}
-                        </span>
+                      <div className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                        <img
+                          src={encodeURI('/AAchegada.jpg')}
+                          alt="Centro Terapêutico Bem-Estar - Sala de Espera"
+                          className="w-full h-40 md:h-48 lg:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute bottom-2 left-2 md:bottom-3 md:left-3 text-white font-semibold text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                       </div>
 
-                      {/* Botões prev/next */}
-                      <button
-                        onClick={() => setAmbienteIndex((ambienteIndex - 1 + ambientePhotos.length) % ambientePhotos.length)}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-clinic-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:scale-110 text-2xl font-bold"
-                      >
-                        ‹
-                      </button>
-                      <button
-                        onClick={() => setAmbienteIndex((ambienteIndex + 1) % ambientePhotos.length)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-clinic-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:scale-110 text-2xl font-bold"
-                      >
-                        ›
-                      </button>
+                      <div className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                        <img
+                          src={encodeURI('/AAmassagem.jpg')}
+                          alt="Centro Terapêutico Bem-Estar - Sala de Massagem"
+                          className="w-full h-40 md:h-48 lg:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute bottom-2 left-2 md:bottom-3 md:left-3 text-white font-semibold text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                      </div>
 
-                      {/* Dots */}
-                      <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
-                        {ambientePhotos.map((_, i) => (
-                          <button
-                            key={i}
-                            onClick={() => setAmbienteIndex(i)}
-                            className={`h-2 rounded-full transition-all duration-300 ${i === ambienteIndex ? 'bg-white w-5' : 'bg-white/40 w-2'}`}
-                          />
-                        ))}
+                      <div className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                        <img
+                          src={encodeURI('/AAsofa.jpg')}
+                          alt="Centro Terapêutico Bem-Estar - Área de Relaxamento"
+                          className="w-full h-40 md:h-48 lg:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute bottom-2 left-2 md:bottom-3 md:left-3 text-white font-semibold text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -666,103 +594,59 @@ function App() {
                   </p>
                 </div>
 
-                {/* Carrossel da equipe */}
-                <div className="relative overflow-hidden">
-                  {/* Strip deslizante */}
-                  <div
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${equipeIndex * 100}%)` }}
-                  >
-                    {equipeMembers.map((member, i) => (
-                      <div key={i} className="w-full flex-shrink-0 px-2">
-                        <div className="bg-gradient-to-br from-white to-clinic-50 rounded-2xl p-8 md:p-12 shadow-lg border border-clinic-100 flex flex-col items-center text-center max-w-2xl mx-auto">
-                          <AvatarCircle
-                            src={encodeURI(member.src)}
-                            alt={`${member.name} - ${member.role}`}
-                            initials={member.initials}
-                          />
-                          <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">{member.name}</h4>
-                          <p className="text-sm text-clinic-600 font-semibold mb-5">{member.role}</p>
-                          <p className="text-gray-500 text-sm md:text-base leading-relaxed">{member.bio}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Botões prev/next */}
-                  <button
-                    onClick={() => setEquipeIndex((equipeIndex - 1 + equipeMembers.length) % equipeMembers.length)}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-clinic-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:scale-110 text-2xl font-bold"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    onClick={() => setEquipeIndex((equipeIndex + 1) % equipeMembers.length)}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-clinic-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:scale-110 text-2xl font-bold"
-                  >
-                    ›
-                  </button>
-                </div>
-
-                {/* Dots */}
-                <div className="flex justify-center gap-2 mt-6">
-                  {equipeMembers.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setEquipeIndex(i)}
-                      className={`h-2 rounded-full transition-all duration-300 ${i === equipeIndex ? 'bg-clinic-500 w-5' : 'bg-clinic-200 w-2'}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Gisliane Silva - Psicóloga */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl border border-white/20 mb-8 md:mb-12 relative z-10 overflow-hidden">
-                <div className="flex flex-col md:flex-row">
-                  {/* Foto lado esquerdo */}
-                  <div className="w-full md:w-64 lg:w-80 flex-shrink-0 bg-gradient-to-br from-clinic-400 to-clinic-600 flex items-center justify-center min-h-48 md:min-h-full">
-                    <img
-                      src={encodeURI('/Gih.png')}
-                      alt="Gisliane Silva - Psicóloga"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const el = e.target as HTMLImageElement;
-                        el.style.display = 'none';
-                        const parent = el.parentElement;
-                        if (parent) {
-                          const fallback = document.createElement('span');
-                          fallback.className = 'text-white text-5xl font-bold';
-                          fallback.textContent = 'GS';
-                          parent.appendChild(fallback);
-                        }
-                      }}
-                    />
-                  </div>
-
-                  {/* Conteúdo lado direito */}
-                  <div className="flex-1 p-6 md:p-10">
-                    <p className="text-xs font-semibold tracking-widest text-clinic-500 uppercase mb-2">Psicóloga · CRP</p>
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Gisliane Silva</h3>
-                    <p className="text-clinic-500 font-medium mb-5">Gih</p>
-
-                    <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
-                      A Terapia Psicológica com Gisliane Silva é um espaço seguro e acolhedor para o cuidado com a saúde emocional.
-                      Com especialização em Saúde da Família e Comunidade, o atendimento é realizado de forma humanizada, utilizando
-                      a abordagem da Terapia Cognitivo-Comportamental (TCC), auxiliando no desenvolvimento do autoconhecimento, no
-                      manejo de emoções e na construção de pensamentos mais equilibrados.
-                    </p>
-                    <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
-                      Os atendimentos são voltados para crianças, adolescentes e adultos, podendo ser realizados de forma
-                      presencial ou online, conforme a sua necessidade. Um cuidado profissional dedicado a promover bem-estar,
-                      qualidade de vida e equilíbrio mental.
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">Saúde da Família</span>
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">TCC</span>
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">Crianças & Adolescentes</span>
-                      <span className="bg-clinic-50 text-clinic-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-clinic-200">Online & Presencial</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                  {/* André Silva */}
+                  <div className="bg-gradient-to-br from-white to-clinic-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-clinic-100">
+                    <div className="text-center mb-4">
+                      <AvatarCircle
+                        src={encodeURI('/AndreSilva.png')}
+                        alt="André Silva - Terapeuta Holístico"
+                        initials="AS"
+                      />
+                      <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-1">André Silva</h4>
+                      <p className="text-sm text-clinic-600 font-medium">Terapeuta Holístico</p>
                     </div>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed text-center">
+                      Com um olhar atento e sensível, busca sempre compreender o que vai além das palavras. 
+                      Sua presença transmite calma, acolhimento e confiança, conduzindo cada pessoa a se 
+                      reconectar com sua própria essência e encontrar novos caminhos para o equilíbrio e bem-estar.
+                    </p>
+                  </div>
+
+                  {/* Rafael Falco */}
+                  <div className="bg-gradient-to-br from-white to-clinic-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-clinic-100">
+                    <div className="text-center mb-4">
+                      <AvatarCircle
+                        src={encodeURI('/RafaelFalco.png')}
+                        alt="Rafael Falco - Massoterapeuta"
+                        initials="RF"
+                      />
+                      <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-1">Rafael Falco</h4>
+                      <p className="text-sm text-clinic-600 font-medium">Terapeuta Holistico</p>
+                    </div>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed text-center">
+                      De forma precisa e dedicada, combina firmeza e delicadeza para trazer alívio e leveza. 
+                      Seu cuidado é pautado na atenção aos detalhes e na verdadeira escuta, criando um espaço 
+                      onde corpo e mente encontram harmonia.
+                    </p>
+                  </div>
+
+                  {/* Lu Gonçalves */}
+                  <div className="bg-gradient-to-br from-white to-clinic-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-clinic-100 md:col-span-2 lg:col-span-1">
+                    <div className="text-center mb-4">
+                      <AvatarCircle
+                        src={encodeURI('/LuGoncalves.png')}
+                        alt="Lu Gonçalves - Terapeuta Energética"
+                        initials="LG"
+                      />
+                      <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-1">Luciana Gonçalves</h4>
+                      <p className="text-sm text-clinic-600 font-medium">Terapeuta Energética</p>
+                    </div>
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed text-center">
+                      Com energia leve e transformadora, conduz processos que despertam clareza e abrem novas 
+                      possibilidades. Seu toque sutil inspira confiança e ajuda cada pessoa a liberar bloqueios 
+                      internos, permitindo que a vida flua de forma mais leve e consciente.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -770,65 +654,66 @@ function App() {
               {/* Localização */}
               {salon?.address && (
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 relative z-10">
-                  {/* Cabeçalho igual aos outros cards */}
-                  <div className="flex items-center mb-8 md:mb-10">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-clinic-400 to-clinic-500 rounded-xl md:rounded-2xl flex items-center justify-center mr-3 md:mr-4 shadow-md">
-                      <span className="text-white text-lg md:text-2xl">📍</span>
-                    </div>
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900">Nossa Localização</h3>
-                  </div>
-
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-stretch">
-                    {/* Info */}
-                    <div className="space-y-4">
-                      <a
-                        href="https://www.bing.com/maps?&cp=-12.729423~-60.136305&lvl=19.010952&pi=0&tstt0=Avenida%20Curitiba%2C%20Jardim%20das%20Oliveiras%2C%20Vilhena%20-%20RO%2C%2076983-462&tsts0=%2526ty%253D18%2526q%253DAvenida%252520Curitiba%25252C%252520Jardim%252520das%252520Oliveiras%25252C%252520Vilhena%252520-%252520RO%25252C%25252076983-462%2526mb%253D-12.726048~-60.14093~-12.732379~-60.130287%2526cardbg%253D%252523F98745%2526dt%253D1754528400000&ftst=0&ftics=False&v=2&sV=2&form=S00027"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start gap-4 p-4 md:p-5 bg-gradient-to-r from-clinic-50 to-clinic-100 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300 group border border-clinic-100"
-                      >
-                        <div className="w-10 h-10 md:w-11 md:h-11 bg-gradient-to-br from-clinic-400 to-clinic-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                          <span className="text-white text-lg">📍</span>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div>
+                      <div className="flex items-center mb-6 md:mb-8">
+                        <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-clinic-400 to-clinic-500 rounded-xl md:rounded-2xl flex items-center justify-center mr-3 md:mr-4">
+                          <span className="text-white text-lg md:text-2xl">📍</span>
                         </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-sm md:text-base mb-0.5">Endereço</p>
-                          <p className="text-clinic-700 font-medium text-sm md:text-base leading-snug">
-                            {salon?.address || clinicData.address}
-                          </p>
-                          <p className="text-xs text-clinic-500 mt-1.5 group-hover:text-clinic-700 transition-colors">Clique para abrir no mapa →</p>
-                        </div>
-                      </a>
-
-                      {(salon?.phone || clinicData.phone) && (
-                        <a
-                          href="https://wa.me/5569992839458"
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900">Nossa Localização</h3>
+                      </div>
+                      
+                      <div className="space-y-4 md:space-y-6">
+                        <a 
+                          href="https://www.bing.com/maps?&cp=-12.729423~-60.136305&lvl=19.010952&pi=0&tstt0=Avenida%20Curitiba%2C%20Jardim%20das%20Oliveiras%2C%20Vilhena%20-%20RO%2C%2076983-462&tsts0=%2526ty%253D18%2526q%253DAvenida%252520Curitiba%25252C%252520Jardim%252520das%252520Oliveiras%25252C%252520Vilhena%252520-%252520RO%25252C%25252076983-462%2526mb%253D-12.726048~-60.14093~-12.732379~-60.130287%2526cardbg%253D%252523F98745%2526dt%253D1754528400000&ftst=0&ftics=False&v=2&sV=2&form=S00027"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-start gap-4 p-4 md:p-5 bg-gradient-to-r from-clinic-50 to-clinic-100 rounded-2xl hover:shadow-lg hover:scale-105 transition-all duration-300 group border border-clinic-100"
+                          className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 bg-gradient-to-r from-clinic-50 to-clinic-100 rounded-xl md:rounded-2xl hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
                         >
-                          <div className="w-10 h-10 md:w-11 md:h-11 bg-gradient-to-br from-clinic-400 to-clinic-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                            <span className="text-white text-lg">📱</span>
+                          <div className="w-8 h-8 md:w-10 md:h-10 bg-clinic-500 rounded-lg md:rounded-xl flex items-center justify-center mt-1 shadow-lg">
+                            <span className="text-white">📍</span>
                           </div>
                           <div>
-                            <p className="font-bold text-gray-900 text-sm md:text-base mb-0.5">Telefone</p>
-                            <p className="text-clinic-700 font-medium text-sm md:text-base flex items-center gap-2">
-                              {salon?.phone || clinicData.phone}
-                              <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-semibold">WhatsApp</span>
+                            <p className="font-bold text-gray-900 text-sm md:text-base lg:text-lg">Endereço</p>
+                            <p className="text-clinic-600 group-hover:text-clinic-700 font-medium text-sm md:text-base transition-colors duration-300">
+                              {salon?.address || clinicData.address}
                             </p>
-                            <p className="text-xs text-clinic-500 mt-1.5 group-hover:text-clinic-700 transition-colors">Clique para abrir no WhatsApp →</p>
+                            <p className="text-xs text-clinic-500 group-hover:text-clinic-600 mt-1 transition-colors duration-300">Clique para abrir no mapa</p>
                           </div>
                         </a>
-                      )}
+                        
+                        {(salon?.phone || clinicData.phone) && (
+                          <a
+                            href="https://wa.me/5569992839458"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 bg-gradient-to-r from-clinic-50 to-clinic-100 rounded-xl md:rounded-2xl hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group"
+                          >
+                            <div className="w-8 h-8 md:w-10 md:h-10 bg-clinic-500 rounded-lg md:rounded-xl flex items-center justify-center mt-1 shadow-lg">
+                              <span className="text-white">📱</span>
+                            </div>
+                            <div>
+                              <p className="font-bold text-gray-900 text-sm md:text-base lg:text-lg">Telefone</p>
+                              <p className="text-clinic-600 group-hover:text-clinic-700 text-sm md:text-base transition-colors duration-300 flex items-center">
+                                <span className="mr-2">📱</span>
+                                {salon?.phone || clinicData.phone}
+                                <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">WhatsApp</span>
+                              </p>
+                              <p className="text-xs text-clinic-500 group-hover:text-clinic-600 mt-1 transition-colors duration-300">Clique para abrir no WhatsApp</p>
+                            </div>
+                          </a>
+                        )}
+                      </div>
                     </div>
-
+                    
                     {/* Google Maps */}
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-clinic-100">
-                      <div
-                        id="google-map"
-                        className="w-full h-64 lg:h-full min-h-64 bg-clinic-50 flex items-center justify-center"
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                      <div 
+                        id="google-map" 
+                        className="w-full h-64 md:h-80 bg-gray-100 flex items-center justify-center"
                       >
-                        <div className="text-center text-clinic-400">
-                          <div className="animate-spin rounded-full h-8 w-8 border-2 border-clinic-500 border-t-transparent mx-auto mb-2"></div>
+                        <div className="text-center text-gray-500">
+                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-clinic-500 mx-auto mb-2"></div>
                           <p className="text-sm">Carregando mapa...</p>
                         </div>
                       </div>

@@ -119,13 +119,7 @@ function App() {
       initials: 'RF',
       bio: 'De forma precisa e dedicada, combina firmeza e delicadeza para trazer alívio e leveza. Seu cuidado é pautado na atenção aos detalhes e na verdadeira escuta, criando um espaço onde corpo e mente encontram harmonia.',
     },
-    {
-      src: '/LuGoncalves.png',
-      name: 'Luciana Gonçalves',
-      role: 'Terapeuta Energética',
-      initials: 'LG',
-      bio: 'Com energia leve e transformadora, conduz processos que despertam clareza e abrem novas possibilidades. Seu toque sutil inspira confiança e ajuda cada pessoa a liberar bloqueios internos, permitindo que a vida flua de forma mais leve e consciente.',
-    },
+    // { src: '/LuGoncalves.png', name: 'Luciana Gonçalves', role: 'Terapeuta Energética', initials: 'LG', bio: 'Com energia leve e transformadora, conduz processos que despertam clareza e abrem novas possibilidades. Seu toque sutil inspira confiança e ajuda cada pessoa a liberar bloqueios internos, permitindo que a vida flua de forma mais leve e consciente.' },
   ];
   const ambientePhotos = [
     { src: '/AAbalcao.jpg', alt: 'Recepção' },

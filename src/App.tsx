@@ -111,6 +111,7 @@ function App() {
       role: 'Terapeuta Holístico',
       initials: 'AS',
       bio: 'Com um olhar atento e sensível, busca sempre compreender o que vai além das palavras. Sua presença transmite calma, acolhimento e confiança, conduzindo cada pessoa a se reconectar com sua própria essência e encontrar novos caminhos para o equilíbrio e bem-estar.',
+      specialties: ['Terapia Holística', 'Escuta Sensível', 'Reconexão'],
     },
     {
       src: '/RafaelFalco.png',
@@ -118,8 +119,16 @@ function App() {
       role: 'Terapeuta Holístico',
       initials: 'RF',
       bio: 'De forma precisa e dedicada, combina firmeza e delicadeza para trazer alívio e leveza. Seu cuidado é pautado na atenção aos detalhes e na verdadeira escuta, criando um espaço onde corpo e mente encontram harmonia.',
+      specialties: ['Terapia Holística', 'Equilíbrio Corpo-Mente'],
     },
-    // { src: '/LuGoncalves.png', name: 'Luciana Gonçalves', role: 'Terapeuta Energética', initials: 'LG', bio: 'Com energia leve e transformadora, conduz processos que despertam clareza e abrem novas possibilidades. Seu toque sutil inspira confiança e ajuda cada pessoa a liberar bloqueios internos, permitindo que a vida flua de forma mais leve e consciente.' },
+    {
+      src: '/LuGoncalves.png',
+      name: 'Marly Macagnan',
+      role: 'Terapeuta Integrativa',
+      initials: 'MM',
+      bio: 'Une diferentes abordagens para promover transformação profunda, equilíbrio emocional e bem-estar integral em cada pessoa que atende.',
+      specialties: ['Hipnoterapia', 'PNL', 'Nova Medicina Germânica', 'EFT', 'Hipnoterapia Infantil', 'Leis Sistêmicas'],
+    },
   ];
   const ambientePhotos = [
     { src: '/AAbalcao.jpg', alt: 'Recepção' },
@@ -135,7 +144,7 @@ function App() {
   }, [ambientePhotos.length]);
 
   useEffect(() => {
-    const t = setInterval(() => setEquipeIndex(i => (i + 1) % equipeMembers.length), 5000);
+    const t = setInterval(() => setEquipeIndex(i => (i + 1) % equipeMembers.length), 10000);
     return () => clearInterval(t);
   }, [equipeMembers.length]);
 
@@ -648,15 +657,36 @@ function App() {
 
               {/* Team Section */}
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 mb-8 md:mb-12 relative z-10">
-                <div className="text-center mb-8 md:mb-12">
-                  <div className="flex items-center justify-center mb-4 md:mb-6">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-clinic-400 to-clinic-500 rounded-xl md:rounded-2xl flex items-center justify-center mr-3 md:mr-4">
-                      <span className="text-white text-lg md:text-2xl">👥</span>
-                    </div>
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900">Nossa Equipe</h3>
+                <div className="relative text-center mb-10 md:mb-14">
+                  {/* Eyebrow */}
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-clinic-50 border border-clinic-100 text-clinic-700 text-xs font-semibold tracking-widest uppercase mb-5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-clinic-500 animate-pulse" />
+                    Profissionais Qualificados
                   </div>
-                  <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-                    Conheça os profissionais dedicados que cuidam do seu bem-estar com expertise e carinho
+
+                  {/* Title with icon */}
+                  <div className="flex items-center justify-center gap-3 md:gap-4 mb-4">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-clinic-400 to-clinic-600 rounded-2xl blur-md opacity-50" />
+                      <div className="relative w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-clinic-400 to-clinic-600 rounded-2xl flex items-center justify-center shadow-lg">
+                        <span className="text-white text-2xl md:text-3xl">👥</span>
+                      </div>
+                    </div>
+                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 via-clinic-700 to-gray-900 bg-clip-text text-transparent">
+                      Nossa Equipe
+                    </h3>
+                  </div>
+
+                  {/* Decorative divider */}
+                  <div className="flex items-center justify-center gap-2 mb-5">
+                    <span className="h-px w-8 bg-gradient-to-r from-transparent to-clinic-300" />
+                    <span className="w-2 h-2 rounded-full bg-clinic-400" />
+                    <span className="h-px w-8 bg-gradient-to-l from-transparent to-clinic-300" />
+                  </div>
+
+                  <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                    Conheça os profissionais dedicados que cuidam do seu bem-estar com{' '}
+                    <span className="text-clinic-600 font-semibold">expertise e carinho</span>.
                   </p>
                 </div>
 
@@ -668,16 +698,57 @@ function App() {
                     style={{ transform: `translateX(-${equipeIndex * 100}%)` }}
                   >
                     {equipeMembers.map((member, i) => (
-                      <div key={i} className="w-full flex-shrink-0 px-2">
-                        <div className="bg-gradient-to-br from-white to-clinic-50 rounded-2xl p-8 md:p-12 shadow-lg border border-clinic-100 flex flex-col items-center text-center max-w-2xl mx-auto">
-                          <AvatarCircle
-                            src={encodeURI(member.src)}
-                            alt={`${member.name} - ${member.role}`}
-                            initials={member.initials}
-                          />
-                          <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">{member.name}</h4>
-                          <p className="text-sm text-clinic-600 font-semibold mb-5">{member.role}</p>
-                          <p className="text-gray-500 text-sm md:text-base leading-relaxed">{member.bio}</p>
+                      <div key={i} className="w-full flex-shrink-0 px-2 md:px-8">
+                        <div className="relative bg-gradient-to-br from-white via-white to-clinic-50/60 rounded-3xl p-8 md:p-12 shadow-xl border border-clinic-100/70 flex flex-col items-center text-center max-w-2xl mx-auto overflow-hidden">
+                          {/* Decorative blobs */}
+                          <div className="absolute -top-16 -right-16 w-48 h-48 bg-clinic-200/30 rounded-full blur-3xl pointer-events-none" />
+                          <div className="absolute -bottom-20 -left-12 w-56 h-56 bg-clinic-300/20 rounded-full blur-3xl pointer-events-none" />
+
+                          {/* Avatar with gradient ring */}
+                          <div className="relative mb-5">
+                            <div className="absolute inset-0 -m-1 rounded-full bg-gradient-to-tr from-clinic-400 via-clinic-300 to-clinic-500 blur-sm opacity-70" />
+                            <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
+                              <img
+                                src={encodeURI(member.src)}
+                                alt={`${member.name} - ${member.role}`}
+                                className="w-full h-full object-cover object-top"
+                                loading="lazy"
+                                onError={(e) => {
+                                  const el = e.target as HTMLImageElement;
+                                  el.style.display = 'none';
+                                  const parent = el.parentElement;
+                                  if (parent && !parent.querySelector('.avatar-fallback')) {
+                                    const fb = document.createElement('span');
+                                    fb.className = 'avatar-fallback w-full h-full flex items-center justify-center bg-gradient-to-br from-clinic-400 to-clinic-500 text-white text-3xl font-bold';
+                                    fb.textContent = member.initials;
+                                    parent.appendChild(fb);
+                                  }
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <h4 className="relative text-2xl md:text-3xl font-bold text-gray-900 mb-1">{member.name}</h4>
+                          <div className="relative inline-flex items-center gap-2 px-3 py-1 rounded-full bg-clinic-100/80 text-clinic-700 text-xs md:text-sm font-semibold mb-5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-clinic-500" />
+                            {member.role}
+                          </div>
+
+                          <p className="relative text-gray-600 text-sm md:text-base leading-relaxed mb-6">{member.bio}</p>
+
+                          {/* Specialty chips */}
+                          {member.specialties && member.specialties.length > 0 && (
+                            <div className="relative flex flex-wrap justify-center gap-2 mt-1">
+                              {member.specialties.map((s, idx) => (
+                                <span
+                                  key={idx}
+                                  className="px-3 py-1 rounded-full text-xs font-medium bg-white border border-clinic-200 text-clinic-700 shadow-sm"
+                                >
+                                  {s}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -685,14 +756,16 @@ function App() {
 
                   {/* Botões prev/next */}
                   <button
+                    aria-label="Anterior"
                     onClick={() => setEquipeIndex((equipeIndex - 1 + equipeMembers.length) % equipeMembers.length)}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-clinic-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:scale-110 text-2xl font-bold"
+                    className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 bg-white hover:bg-clinic-50 text-clinic-600 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center shadow-xl ring-1 ring-clinic-100 transition-all hover:scale-110 text-2xl font-bold z-20"
                   >
                     ‹
                   </button>
                   <button
+                    aria-label="Próximo"
                     onClick={() => setEquipeIndex((equipeIndex + 1) % equipeMembers.length)}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-clinic-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:scale-110 text-2xl font-bold"
+                    className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 bg-white hover:bg-clinic-50 text-clinic-600 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center shadow-xl ring-1 ring-clinic-100 transition-all hover:scale-110 text-2xl font-bold z-20"
                   >
                     ›
                   </button>

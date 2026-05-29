@@ -783,68 +783,6 @@ function App() {
                 </div>
               </div>
 
-              {/* Gisliane Silva - Psicóloga */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl border border-white/20 mb-8 md:mb-12 relative z-10 overflow-hidden">
-                <div className="flex flex-col md:flex-row">
-                  {/* Foto lado esquerdo */}
-                  <div className="w-full md:w-64 lg:w-80 flex-shrink-0 bg-gradient-to-br from-clinic-400 to-clinic-600 flex items-center justify-center min-h-48 md:min-h-full">
-                    <img
-                      src={encodeURI('/Gih.png')}
-                      alt="Gisliane Silva - Psicóloga"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const el = e.target as HTMLImageElement;
-                        el.style.display = 'none';
-                        const parent = el.parentElement;
-                        if (parent) {
-                          const fallback = document.createElement('span');
-                          fallback.className = 'text-white text-5xl font-bold';
-                          fallback.textContent = 'GS';
-                          parent.appendChild(fallback);
-                        }
-                      }}
-                    />
-                  </div>
-
-                  {/* Conteúdo lado direito */}
-                  <div className="flex-1 p-6 md:p-10">
-                    <p className="text-xs font-semibold tracking-widest text-clinic-500 uppercase mb-2">Psicóloga · CRP</p>
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">Gisliane Silva</h3>
-                    <p className="text-clinic-500 font-medium mb-5">Gih</p>
-
-                    <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
-                      A Terapia Psicológica com Gisliane Silva é um espaço seguro e acolhedor para o cuidado com a saúde emocional.
-                      Com especialização em Saúde da Família e Comunidade, o atendimento é realizado de forma humanizada, utilizando
-                      a abordagem da Terapia Cognitivo-Comportamental (TCC), auxiliando no desenvolvimento do autoconhecimento, no
-                      manejo de emoções e na construção de pensamentos mais equilibrados.
-                    </p>
-                    <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
-                      Os atendimentos são voltados para crianças, adolescentes e adultos, podendo ser realizados de forma
-                      presencial ou online, conforme a sua necessidade. Um cuidado profissional dedicado a promover bem-estar,
-                      qualidade de vida e equilíbrio mental.
-                    </p>
-
-                    {/* Preço + botão */}
-                    <div className="flex items-center gap-5">
-                      <div className="flex flex-col">
-                        <span className="text-xs text-gray-400 line-through">De: R$ 250</span>
-                        <span className="text-xl font-bold text-red-600">R$ 180</span>
-                      </div>
-                      <button
-                        onClick={() => {
-                          const message = `Olá! Gostaria de agendar uma consulta de Psicologia com a Gisliane Silva (Gih).\n\n*Serviço:* Terapia Psicológica – TCC\n*Valor:* R$ 180,00\n\nAguardo a confirmação, por favor.`;
-                          window.open(`https://wa.me/5569992839458?text=${encodeURIComponent(message)}`, '_blank');
-                        }}
-                        className="flex items-center gap-2 bg-gradient-to-r from-clinic-500 to-clinic-600 text-white px-5 py-3 rounded-xl font-semibold text-sm hover:from-clinic-600 hover:to-clinic-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
-                      >
-                        <Calendar className="w-4 h-4" />
-                        Agendar via WhatsApp
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {/* Localização */}
               {salon?.address && (
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 relative z-10">
